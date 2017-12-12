@@ -17,7 +17,7 @@ def search():
 		return
 	else:
 		for index, councillor in enumerate(councillors):
-			col1 = councillor.xpath('.//td)[1]').strip()
+			col1 = councillor.xpath(".//td)[1]").strip()
 			data = {"col1": col1, "index": index}
 			
 			print data
