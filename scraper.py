@@ -21,7 +21,7 @@ def search():
 			data = {"col1": col1, "index": index}
 			
 			print data
-			scraperwiki.sqlite.save(unique_keys=['reference', 'index'], data=data)
+			scraperwiki.sqlite.save(unique_keys=['index'], data=data)
 		
 
 search()
