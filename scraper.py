@@ -45,6 +45,7 @@ def search(wdcode):
 #	    application_url = "http://public.oxford.gov.uk/online-applications/applicationDetails.do?activeTab=summary&keyVal=" + key
 
             application_url = "http://public.oxford.gov.uk" + application_link
+	    print key
             print "GET " + application_url
             sleep(2)
             application_page = requests.get(application_url)
@@ -66,3 +67,6 @@ def search(wdcode):
             
                 print data
                 scraperwiki.sqlite.save(unique_keys=['reference', 'index'], data=data)
+		
+for wdcode in wards:
+    search(wdcode)
