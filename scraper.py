@@ -20,7 +20,9 @@ def search(wdcode):
     }
 # is this the way to pass values when posting to a form? A dictionary object with the keys being the names of the controls?
     
+    print wdcode
     print "POST 'http://public.oxford.gov.uk/online-applications/advancedSearchResults.do?action=firstPage'"
+    
     sleep(2)
     result = requests.post('http://public.oxford.gov.uk/online-applications/advancedSearchResults.do?action=firstPage', request_data)
 
