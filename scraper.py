@@ -13,7 +13,7 @@ def search():
 	
 	print len(councillors)
 	
-	councillor = councillors[1]
+	councillor = councillors[2]
 	
 #	print councillor.strip()
 	
@@ -54,20 +54,28 @@ def search():
 					if matchObj:
 						number = matchObj.group(2)
 						numberType = matchObj.group(1)
-						print numberType, number
+						
+						if re.search( r'home\s+mob', numberType, re.I):
+							homeMobile = number
+						elif re.search( r'work\s+mob', numberType, re.I):
+							workMobile = number							
+						elif re.search( r'home', numberType, re.I):
+							homePhone = number							
+						elif re.search( r'work', numberType, re.I):
+							workPhone = number
 					else:
 						print i, pText
+						roles = roles.join(pText)
+						
 	
 	party = "".join(cols[2].xpath('text()')).strip()
 	ward = "".join(cols[3].xpath('text()')).strip()
 	
-	data = {"name": name, "link": link, "address": address, "eWork": eWork, "party": party, "ward": ward}
+	data = {"name": name, "link": link, "address": address, "roles", roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  "workhone": workhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
 	
 	print data
 	
-#	col1 = councillor.xpath("td")[1].strip()
-	
-#	print col1
+
 	
 #	if len(councillors) == 0:
 #		return
