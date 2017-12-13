@@ -22,17 +22,17 @@ def search():
 	
 	paras = cols[1].xpath('p')
 	
-	for para in paras:
-		links = para.xpath('a')
-		if len(links) == 1:
-			print "".join(links[0].xpath('text()')).strip()
+	for i, para in enumerate(paras):
+		if i == 0:
+			name = "".join(para[i].xpath('./a/text()')).strip()
+			link = "".join(para[i].xpath('./a[@href]/text()')).strip()
 		else:
 			print "".join(para.xpath('text()')).strip()
-		
+	
 	party = "".join(cols[2].xpath('text()')).strip()
 	ward = "".join(cols[3].xpath('text()')).strip()
 	
-	data = {"party": party, "ward": ward}
+	data = {"name": name, "party": party, "ward": ward}
 	
 	print data
 	
