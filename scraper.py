@@ -93,7 +93,7 @@ def search():
 				mgUserBodySectionTitles = mgUserBody.xpath("//h2[@class='mgSectionTitle']")
 				
 				for mgUserBodySectionTitle in mgUserBodySectionTitles:
-					mgUserBodySection = mgUserBodySectionTitle.nextSibling()
+					mgUserBodySection = mgUserBodySectionTitle.xpath('./following-sibling')
 					mgUserBodySectionName = "".join(mgUserBodySectionTitle.xpath('text()')).strip()
 					if re.search( r'More information about this councillor', mgUserBodySectionName, re.I):
 						filler = "".join(mgUserBodySection.xpath('text()')).strip()
