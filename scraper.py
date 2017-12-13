@@ -50,7 +50,11 @@ def search():
 				if matchObj:
 					address = pText
 				else:
-					print i, pText
+					matchObj = re.search( r'^(.+)?\:\s+(0[0-9 ]+)$', pText)
+					if matchObj:
+						print matchObj.group(1), pText
+					else:
+						print i, pText
 	
 	party = "".join(cols[2].xpath('text()')).strip()
 	ward = "".join(cols[3].xpath('text()')).strip()
