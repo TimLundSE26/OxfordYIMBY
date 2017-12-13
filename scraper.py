@@ -14,6 +14,7 @@ def search():
 	print len(councillors)
 	
 	councillor = councillors[2]
+	roles = ""
 	
 #	print councillor.strip()
 	
