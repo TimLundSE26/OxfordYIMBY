@@ -20,7 +20,7 @@ def search():
 	cols = councillor.xpath("td")
 	print len(cols)
 	
-	print cols[2].text()
+	print "".join(cols[2].xpath('text()')).strip()
 	
 #	col1 = councillor.xpath("td")[1].strip()
 	
