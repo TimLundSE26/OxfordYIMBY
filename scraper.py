@@ -20,7 +20,17 @@ def search():
 	cols = councillor.xpath("td")
 	print len(cols)
 	
-	print cols[2].xpath('text()').strip()
+	paras = cols[1].xpath('p')
+	
+	for para in paras:
+		print  "".join(para.xpath('text()')).strip()
+		
+	party = "".join(cols[2].xpath('text()')).strip()
+	ward = "".join(cols[3].xpath('text()')).strip()
+	
+	data = {"party": party, "ward": ward}
+	
+	print data
 	
 #	col1 = councillor.xpath("td")[1].strip()
 	
