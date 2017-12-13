@@ -28,7 +28,7 @@ def search():
 	#                "workhone": workhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
 
 			cols = councillor.xpath("td")
-			print len(cols)
+#			print len(cols)
 
 			paras = cols[1].xpath('p')
 
@@ -38,21 +38,19 @@ def search():
 					link = "".join(para.xpath('./a/@href')).strip()
 				else:
 					pText = "".join(para.xpath('text()')).strip()
-					print i, pText
+#					print i, pText
 
 					if len(para.xpath('a')) ==1:
 						link1 = "".join(para.xpath('./a/@href')).strip()
 						matchObj = re.search( r'@', link1)
 						if matchObj:
 							matchObj1 = re.search( r'work', pText, re.I)
-							if matchObj1:
+							if re.search( r'work', pText, re.I):
 								eWork = link1
+							elif re.search( r'home', pText, re.I):
+								eHome = link1
 							else:
-								matchObj1 = re.search( r'home', pText, re.I)
-								if matchObj1:
-									eHome = link1
-								else:
-									print i, pText, link1
+								print i, pText, link1
 						else:
 							print "non email address link"
 					else:
