@@ -89,7 +89,7 @@ def search():
 				
 				result1 = requests.get(urlBase + link)
 				result_dom1 = fromstring(result1.content)
-				mgUserBody = result_dom.xpath("//div[@class='mgUserBody']")[0]
+				mgUserBody = result_dom1.xpath("//div[@class='mgUserBody']")[0]
 				mgUserBodySectionTitles = mgUserBody.xpath("//h2[@class='mgSectionTitle']")
 				
 				for mgUserBodySectionTitle in mgUserBodySectionTitles:
