@@ -52,7 +52,9 @@ def search():
 				else:
 					matchObj = re.search( r'^(.+)?\:\s+(0[0-9 ]+)$', pText)
 					if matchObj:
-						print matchObj.group(1), pText
+						number = matchObj.group(2)
+						numberType = matchObj.group(1)
+						print numberType, number
 					else:
 						print i, pText
 	
