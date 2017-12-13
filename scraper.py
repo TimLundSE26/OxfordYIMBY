@@ -9,19 +9,19 @@ def search():
 	sleep(2)
 	result = requests.get('http://public.oxford.gov.uk/online-applications/advancedSearchResults.do?action=firstPage')
 	result_dom = fromstring(result.content)
-	councillors = result_dom.xpath("//table[@id='mgTable1']/tbody/tr")
+	councillors = result_dom.xpath("/table[@id='mgTable1']")
 	
 	print len(councillors)
 	
-	if len(councillors) == 0:
-		return
-	else:
-		for index, councillor in enumerate(councillors):
-			col1 = councillor.xpath(".//td)[1]").strip()
-			data = {"col1": col1, "index": index}
+#	if len(councillors) == 0:
+#		return
+#	else:
+#		for index, councillor in enumerate(councillors):
+#			col1 = councillor.xpath(".//td)[1]").strip()
+#			data = {"col1": col1, "index": index}
 			
-			print data
-			scraperwiki.sqlite.save(unique_keys=['index'], data=data)
+#			print data
+#			scraperwiki.sqlite.save(unique_keys=['index'], data=data)
 		
 
 search()
