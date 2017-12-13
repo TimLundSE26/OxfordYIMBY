@@ -31,18 +31,18 @@ def search():
 			print i, pText
 			
 			if len(para.xpath('a')) ==1:
-				link = "".join(para.xpath('./a/@href')).strip()
-				matchObj = re.search( r'@', link)
+				link1 = "".join(para.xpath('./a/@href')).strip()
+				matchObj = re.search( r'@', link1)
 				if matchObj:
 					matchObj1 = re.search( r'work', pText, re.I)
 					if matchObj1:
-						eWork = link
+						eWork = link1
 					else:
 						matchObj1 = re.search( r'home', pText, re.I)
 						if matchObj1:
-							eHome = link
+							eHome = link1
 						else:
-							print i, pText, "".join(para.xpath('./a[@href]/text()')).strip()
+							print i, pText, link1
 				else:
 					print "non email address link"
 			else:
