@@ -95,11 +95,10 @@ def search():
 				print len(mgUserBodySectionTitles)
 				
 				for mgUserBodySectionTitle in mgUserBodySectionTitles:
-					mgUserBodySections = mgUserBodySectionTitle.xpath('./following-sibling')
-					print len(mgUserBodySections)
+					mgUserBodySection = mgUserBodySectionTitle.next()					
 					
-					if len(mgUserBodySections) != 0:
-						mgUserBodySection = mgUserBodySections[0]
+					if mgUserBodySection:
+						
 						mgUserBodySectionName = "".join(mgUserBodySectionTitle.xpath('text()')).strip()
 						if re.search( r'More information about this councillor', mgUserBodySectionName, re.I):
 							filler = "".join(mgUserBodySection.xpath('text()')).strip()
