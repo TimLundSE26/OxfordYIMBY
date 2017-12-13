@@ -27,7 +27,7 @@ def search():
 			name = "".join(para[i].xpath('./a/text()')).strip()
 			link = "".join(para[i].xpath('./a[@href]/text()')).strip()
 		else:
-			print "".join(para.xpath('text()')).strip()
+			print i, "".join(para.xpath('text()')).strip()
 	
 	party = "".join(cols[2].xpath('text()')).strip()
 	ward = "".join(cols[3].xpath('text()')).strip()
