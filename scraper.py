@@ -84,7 +84,9 @@ def search():
 				ward = "".join(cols[3].xpath('text()')).strip()	
 				
 				sleep(2)
-
+				
+				print "GET " + urlBase + link 
+				
 				result1 = requests.get(urlBase + link)
 				result_dom1 = fromstring(result1.content)
 				mgUserBody = result_dom.xpath("//div[@class='mgUserBody']")[0]
