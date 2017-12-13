@@ -15,9 +15,13 @@ def search():
 	
 	councillor = councillors[1]
 	
-	print councillor.strip()
+#	print councillor.strip()
 	
-#	cols = councillor.xpath("td")
+	cols = councillor.xpath("td")
+	print len(cols)
+	
+	print cols[2].text()
+	
 #	col1 = councillor.xpath("td")[1].strip()
 	
 #	print col1
