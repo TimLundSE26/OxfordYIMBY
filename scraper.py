@@ -9,7 +9,7 @@ def search():
 	sleep(2)
 	result = requests.get('http://mycouncil.oxford.gov.uk/mgMemberIndex.aspx?FN=ALPHA&VW=TABLE&PIC=1')
 	result_dom = fromstring(result.content)
-	councillors = result_dom.xpath("//table")
+	councillors = result_dom.xpath("//table[@id='mgTable1']")
 	
 	print len(councillors)
 	
