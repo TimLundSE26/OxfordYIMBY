@@ -7,7 +7,7 @@ from time import sleep
 def search():
 	print "GET 'http://mycouncil.oxford.gov.uk/mgMemberIndex.aspx?FN=ALPHA&VW=TABLE&PIC=1'" 
 	sleep(2)
-	result = requests.get('http://public.oxford.gov.uk/online-applications/advancedSearchResults.do?action=firstPage')
+	result = requests.get('http://mycouncil.oxford.gov.uk/mgMemberIndex.aspx?FN=ALPHA&VW=TABLE&PIC=1')
 	result_dom = fromstring(result.content)
 	councillors = result_dom.xpath("/table")
 	
