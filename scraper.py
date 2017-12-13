@@ -85,7 +85,7 @@ def search():
 				
 				sleep(2)
 				
-				print "GET " + urlBase + link 
+#				print "GET " + urlBase + link 
 				
 				result1 = requests.get(urlBase + link)
 				result_dom1 = fromstring(result1.content)
@@ -105,6 +105,7 @@ def search():
 							filler = "".join(mgUserBodySection.xpath('text()')).strip()
 						elif re.search( r'Surgery details', mgUserBodySectionName, re.I):
 							surgery = "".join(mgUserBodySection.xpath('text()')).strip()
+							print name, "Surgery", mgUserBodySectionName
 						elif re.search( r'Appointments to outside bodies', mgUserBodySectionName, re.I):
 							filler = "".join(mgUserBodySection.xpath('text()')).strip()
 						elif re.search( r'Additional Information', mgUserBodySectionName, re.I):
@@ -116,7 +117,7 @@ def search():
 
 				scraperwiki.sqlite.save(unique_keys=['index', 'link'], data=data)
 
-				print data
+#				print data
 	
 
 
