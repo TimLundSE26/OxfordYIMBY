@@ -27,12 +27,22 @@ def search():
 			name = "".join(para.xpath('./a/text()')).strip()
 			link = "".join(para.xpath('./a[@href]/text()')).strip()
 		else:
-			print i, "".join(para.xpath('text()')).strip()
+			pText = "".join(para.xpath('text()')).strip()
+			print i, pText
+			
+			if len(para.xpath('a')) ==1:
+				print i, pText, "".join(para.xpath('./a[@href]/text()')).strip()
+			else:
+				matchObj = re.search( r'OX\d \d[A-Z]{2}', pText)
+				if matchObj:
+					address = pText
+				else:
+					print i, pText
 	
 	party = "".join(cols[2].xpath('text()')).strip()
 	ward = "".join(cols[3].xpath('text()')).strip()
 	
-	data = {"name": name, "party": party, "ward": ward}
+	data = {"name": name, "link": link, "address": address, "party": party, "ward": ward}
 	
 	print data
 	
