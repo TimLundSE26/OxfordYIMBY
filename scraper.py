@@ -5,9 +5,12 @@ from lxml.html.soupparser import fromstring
 from time import sleep
 
 def search():
-	print "GET 'http://mycouncil.oxford.gov.uk/mgMemberIndex.aspx?FN=ALPHA&VW=TABLE&PIC=1'" 
+	urlBase = "http://mycouncil.oxford.gov.uk/"
+	
+#	print "GET 'http://mycouncil.oxford.gov.uk/mgMemberIndex.aspx?FN=ALPHA&VW=TABLE&PIC=1'" 
 	sleep(2)
-	result = requests.get('http://mycouncil.oxford.gov.uk/mgMemberIndex.aspx?FN=ALPHA&VW=TABLE&PIC=1')
+	result = requests.get(urlBase + 'mgMemberIndex.aspx?FN=ALPHA&VW=TABLE&PIC=1')
+	
 	result_dom = fromstring(result.content)
 	councillors = result_dom.xpath("//table[@id='mgTable1']//tr")
 	
@@ -23,7 +26,8 @@ def search():
 			workPhone = ""
 			homeMobile = ""
 			workMobile = ""
-
+			surgery = ""
+			
 	#	data = {"name": name, "link": link, "address": address, "roles": roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  
 	#                "workhone": workhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
 
@@ -77,9 +81,34 @@ def search():
 
 
 				party = "".join(cols[2].xpath('text()')).strip()
-				ward = "".join(cols[3].xpath('text()')).strip()
+				ward = "".join(cols[3].xpath('text()')).strip()	
+				
+				sleep(2)
 
-				data = { "index": index, "name": name, "link": link, "address": address, "roles": roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  "workPhone": workPhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
+				result1 = requests.get(urlBase + link)
+				result_dom1 = fromstring(result1.content)
+				mgUserBody = result_dom.xpath("//div[@class='mgUserBody']")[0]
+				mgUserBodySectionTitles = mgUserBody.xpath("//h2[@class='mgSectionTitle']")
+				
+				for mgUserBodySectionTitle in mgUserBodySectionTitles:
+					mgUserBodySection = mgUserBodySectionTitle.nextSibling
+					mgUserBodySectionName = "".join(mgUserBodySectionTitle.xpath('text()')).strip()
+					if re.search( r'More information about this councillor', mgUserBodySectionName, re.I):
+					
+					elif re.search( r'terms of office', mgUserBodySectionName, re.I):
+						
+					elif re.search( r'committee appointments', mgUserBodySectionName, re.I):
+						
+					elif re.search( r'Surgery details', mgUserBodySectionName, re.I):
+						surgery = "".join(mgUserBodySection.xpath('text()')).strip()
+					elif re.search( r'Appointments to outside bodies', mgUserBodySectionName, re.I):
+						
+					elif re.search( r'Additional Information', mgUserBodySectionName, re.I):
+						
+					else:
+
+				
+				data = { "index": index, "surgery": surgery, "name": name, "link": link, "address": address, "roles": roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  "workPhone": workPhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
 
 				scraperwiki.sqlite.save(unique_keys=['index', 'link'], data=data)
 
