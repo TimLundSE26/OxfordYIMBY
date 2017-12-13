@@ -76,7 +76,7 @@ def search():
 									elif re.search( r'work', numberType, re.I):
 										workPhone = number
 								else:
-									print i, pText
+#									print i, pText
 									roles = roles.join(pText)
 
 
@@ -91,6 +91,8 @@ def search():
 				result_dom1 = fromstring(result1.content)
 				mgUserBody = result_dom1.xpath("//div[@class='mgUserBody']")[0]
 				mgUserBodySectionTitles = mgUserBody.xpath("//h2[@class='mgSectionTitle']")
+				
+				print len(mgUserBodySectionTitles)
 				
 				for mgUserBodySectionTitle in mgUserBodySectionTitles:
 					mgUserBodySections = mgUserBodySectionTitle.xpath('./following-sibling')
