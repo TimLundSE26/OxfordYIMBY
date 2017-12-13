@@ -9,7 +9,7 @@ def search():
 	sleep(2)
 	result = requests.get('http://public.oxford.gov.uk/online-applications/advancedSearchResults.do?action=firstPage')
 	result_dom = fromstring(result.content)
-	councillors = result_dom.xpath("/table[@id='mgTable1']")
+	councillors = result_dom.xpath("/table")
 	
 	print len(councillors)
 	
