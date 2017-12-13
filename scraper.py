@@ -13,10 +13,14 @@ def search():
 	
 	print len(councillors)
 	
-	councillor = councillors[0]
-	col1 = councillor.xpath("td")[1].strip()
+	councillor = councillors[1]
 	
-	print col1
+	print councillor.strip()
+	
+#	cols = councillor.xpath("td")
+#	col1 = councillor.xpath("td")[1].strip()
+	
+#	print col1
 	
 #	if len(councillors) == 0:
 #		return
