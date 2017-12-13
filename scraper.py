@@ -71,7 +71,7 @@ def search():
 	party = "".join(cols[2].xpath('text()')).strip()
 	ward = "".join(cols[3].xpath('text()')).strip()
 	
-	data = {"name": name, "link": link, "address": address, "roles", roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  "workhone": workhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
+	data = {"name": name, "link": link, "address": address, "roles": roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  "workhone": workhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
 	
 	print data
 	
