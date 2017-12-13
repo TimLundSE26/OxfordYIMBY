@@ -15,8 +15,15 @@ def search():
 	
 	councillor = councillors[2]
 	roles = ""
+	eHome = ""
+	eWork = ""
+	homePhone = ""
+	workPhone = ""
+	homeMobile = ""
+	workMobile = ""
 	
-#	print councillor.strip()
+#	data = {"name": name, "link": link, "address": address, "roles": roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  
+#                "workhone": workhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
 	
 	cols = councillor.xpath("td")
 	print len(cols)
