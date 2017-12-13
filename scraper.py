@@ -96,6 +96,8 @@ def search():
 				
 				for mgUserBodySectionTitle in mgUserBodySectionTitles:
 					mgUserBodySections = mgUserBodySectionTitle.xpath('./following-sibling')
+					print len(mgUserBodySections)
+					
 					if len(mgUserBodySections) != 0:
 						mgUserBodySection = mgUserBodySections[0]
 						mgUserBodySectionName = "".join(mgUserBodySectionTitle.xpath('text()')).strip()
