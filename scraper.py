@@ -25,7 +25,7 @@ def search():
 	for i, para in enumerate(paras):
 		if i == 0:
 			name = "".join(para.xpath('./a/text()')).strip()
-			link = string(para.xpath('./a/@href'))
+			link = "".join(para.xpath('./a/@href')).strip()
 		else:
 			pText = "".join(para.xpath('text()')).strip()
 			print i, pText
