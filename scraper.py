@@ -31,7 +31,20 @@ def search():
 			print i, pText
 			
 			if len(para.xpath('a')) ==1:
-				print i, pText, "".join(para.xpath('./a[@href]/text()')).strip()
+				link = "".join(para.xpath('./a/@href')).strip()
+				matchObj = re.search( r'@', link)
+				if matchObj:
+					matchObj1 = re.search( r'work', pText, re.I)
+					if matchObj1:
+						eWork = link
+					else:
+						matchObj1 = re.search( r'home', pText, re.I)
+						if matchObj1:
+							eHome = link
+						else:
+							print i, pText, "".join(para.xpath('./a[@href]/text()')).strip()
+				else:
+					print "non email address link"
 			else:
 				matchObj = re.search( r'OX\d \d[A-Z]{2}', pText)
 				if matchObj:
@@ -42,7 +55,7 @@ def search():
 	party = "".join(cols[2].xpath('text()')).strip()
 	ward = "".join(cols[3].xpath('text()')).strip()
 	
-	data = {"name": name, "link": link, "address": address, "party": party, "ward": ward}
+	data = {"name": name, "link": link, "address": address, "eWork": eWork, "party": party, "ward": ward}
 	
 	print data
 	
