@@ -22,7 +22,7 @@ def search(mth):
 	
 	print len(result_dom.xpath("body"))
 	print len(result_dom.xpath("//div"))
-	print len(result_dom.xpath("//li"))
+	print len(result_dom.xpath("//li[@class="searchresult"]"))
 	
 	applications = result_dom.xpath("//li[@class='searchresult']")
 
