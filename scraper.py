@@ -83,9 +83,6 @@ def search():
 				party = "".join(cols[2].xpath('text()')).strip()
 				ward = "".join(cols[3].xpath('text()')).strip()	
 				
-				data = { "index": index, "name": name, "link": link, "address": address, "roles": roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  "workPhone": workPhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
-				print data
-				
 				sleep(2)
 				
 #				print "GET " + urlBase + link 
@@ -103,46 +100,28 @@ def search():
 					
 					if mgUserBodySection:						
 						mgUserBodySectionName = "".join(mgUserBodySectionTitle.xpath('text()')).strip()
-						print mgUserBodySectionName
-						print mgUserBodySection.tag
 						
 						matchObj = re.search( r'Surgery details', mgUserBodySectionName, re.I)
 						if re.search( r'Surgery details', mgUserBodySectionName, re.I):
-							surgery = "".join(mgUserBodySection.xpath('text()')).strip()
-							print re.sub(u"(\u2018|\u2019)", "'", surgery)
+							surgery = re.sub(u"(\u2018|\u2019)", "'", "".join(mgUserBodySection.xpath('text()')).strip())							
 						elif re.search( r'terms of office', mgUserBodySectionName, re.I):							
-							print len(mgUserBodySection.xpath('li'))
-# surgery = "".join(mgUserBodySection.xpath('text()')).strip()
-# AttributeError: '_ElementStringResult' object has no attribute 'xpath'
-	
+							print mgUserBodySectionName, len(mgUserBodySection.xpath('li'))
+						elif re.search( r'More information about this councillor', mgUserBodySectionName, re.I):							
+							print mgUserBodySectionName, len(mgUserBodySection.xpath('li'))
+						elif re.search( r'committee appointments', mgUserBodySectionName, re.I):							
+							print mgUserBodySectionName, len(mgUserBodySection.xpath('li'))
+						elif re.search( r'Appointments to outside bodies', mgUserBodySectionName, re.I):							
+							print mgUserBodySectionName, len(mgUserBodySection.xpath('li'))
+						elif re.search( r'Additional Information', mgUserBodySectionName, re.I):							
+							print mgUserBodySection.tag
+							
 					else:
 						print "No next sibling"
-#						if re.search( r'More information about this councillor', mgUserBodySectionName, re.I):
-#							filler = len(mgUserBodySection.xpath('node()')
-								     
-#						if re.search( r'terms of office', mgUserBodySectionName, re.I):
-#							filler = len(mgUserBodySection.xpath('node()')
-								     
-#						if re.search( r'committee appointments', mgUserBodySectionName, re.I):
-#							filler = len(mgUserBodySection.xpath('node()')
-								     
-#						if re.search( r'Surgery details', mgUserBodySectionName, re.I):
-#							surgery = "".join(mgUserBodySection.xpath('text()')).strip()
-#							print name, "Surgery", mgUserBodySectionName
-								     
-#						if re.search( r'Appointments to outside bodies', mgUserBodySectionName, re.I):
-#							filler = len(mgUserBodySection.xpath('node()')
-								     
-#						if re.search( r'Additional Information', mgUserBodySectionName, re.I):
-#							filler = len(mgUserBodySection.xpath('node()')
-#						else:
-#							filler = len(mgUserBodySection.xpath('node()')
-#					else:
-#						filler = ""
-				
-#				data = { "index": index, "surgery": surgery, "name": name, "link": link, "address": address, "roles": roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  "workPhone": workPhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
 
-#				scraperwiki.sqlite.save(unique_keys=['index', 'link'], data=data)
+				
+				data = { "index": index, "surgery": surgery, "name": name, "link": link, "address": address, "roles": roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  "workPhone": workPhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
+
+				scraperwiki.sqlite.save(unique_keys=['index', 'link'], data=data)
 
 #				print data
 	
