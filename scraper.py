@@ -104,26 +104,26 @@ def search():
 						
 						mgUserBodySectionName = "".join(mgUserBodySectionTitle.xpath('text()')).strip()
 						
-						if re.search( r'More information about this councillor', mgUserBodySectionName, re.I):
-							filler = len(mgUserBodySection.xpath('node()')
+#						if re.search( r'More information about this councillor', mgUserBodySectionName, re.I):
+#							filler = len(mgUserBodySection.xpath('node()')
 								     
-						if re.search( r'terms of office', mgUserBodySectionName, re.I):
-							filler = len(mgUserBodySection.xpath('node()')
+#						if re.search( r'terms of office', mgUserBodySectionName, re.I):
+#							filler = len(mgUserBodySection.xpath('node()')
 								     
-						if re.search( r'committee appointments', mgUserBodySectionName, re.I):
-							filler = len(mgUserBodySection.xpath('node()')
+#						if re.search( r'committee appointments', mgUserBodySectionName, re.I):
+#							filler = len(mgUserBodySection.xpath('node()')
 								     
 						if re.search( r'Surgery details', mgUserBodySectionName, re.I):
 							surgery = "".join(mgUserBodySection.xpath('text()')).strip()
 							print name, "Surgery", mgUserBodySectionName
 								     
-						if re.search( r'Appointments to outside bodies', mgUserBodySectionName, re.I):
-							filler = len(mgUserBodySection.xpath('node()')
-								     
-						if re.search( r'Additional Information', mgUserBodySectionName, re.I):
-							filler = len(mgUserBodySection.xpath('node()')
-#						else:
+#						if re.search( r'Appointments to outside bodies', mgUserBodySectionName, re.I):
 #							filler = len(mgUserBodySection.xpath('node()')
+								     
+#						if re.search( r'Additional Information', mgUserBodySectionName, re.I):
+#							filler = len(mgUserBodySection.xpath('node()')
+						else:
+							filler = len(mgUserBodySection.xpath('node()')
 				
 				data = { "index": index, "surgery": surgery, "name": name, "link": link, "address": address, "roles": roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  "workPhone": workPhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
 
