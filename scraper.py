@@ -99,13 +99,15 @@ def search():
 				
 				for mgUserBodySectionTitle in mgUserBodySectionTitles:
 					
-					print "".join(mgUserBodySectionTitle.xpath('text()')).strip()
-					
 					mgUserBodySection = mgUserBodySectionTitle.xpath('following-sibling::node()')[0]					
 					
 					if mgUserBodySection:						
 						mgUserBodySectionName = "".join(mgUserBodySectionTitle.xpath('text()')).strip()
 						print mgUserBodySectionName
+						matchObj = re.search( r'Surgery details', mgUserBodySectionName, re.I)
+						if matchObj:
+							surgery = "".join(mgUserBodySection.xpath('text()')).strip()
+							print surgery
 					else:
 						print "No next sibling"
 #						if re.search( r'More information about this councillor', mgUserBodySectionName, re.I):
