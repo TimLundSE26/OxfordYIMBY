@@ -7,7 +7,9 @@ from time import sleep
 month = "Oct 17"
 
 def search(mth):
-  	request_data = { "month": mth, "dateType": "DC_Validated" }
+#  	request_data = { "searchCriteria.parish": ALL, "searchCriteria.ward": ALL, "month": mth, "dateType": "DC_Validated" , "searchType": "Application" }
+
+  	request_data = {"month": mth, "dateType": "DC_Validated" , "searchType": "Application" }
 
 	# <input type="radio" name="dateType" value="DC_Validated" checked="checked" id="dateValidated">
     
@@ -19,38 +21,12 @@ def search(mth):
 		return
 	
 	result_dom = fromstring(result.content)
-	container = result_dom.xpath("/div[@id='searchResultsContainer']")
-	
-	print len(result_dom.xpath("body"))
+  
+  	print len(result_dom.xpath("body"))
 	print len(result_dom.xpath("//div"))
-	
-	container = result_dom.xpath("/div[@id='searchResultsContainer']")
-	
-	print len(result_dom.xpath("div[@id='searchResultsContainer']"))
-	
-	print len( result_dom.xpath("/div[@id='searchResultsContainer']"))
-	print len( result_dom.xpath("//div[@id='searchResultsContainer']"))
-	
-	applications = result_dom.xpath("//li[@class='searchresult']")
+  
+  	results = result_dom.xpath("//ul[@id='searchresults']")
+  	print len(results)
 
-	if len(applications) == 0:
-		return
-	else:
-		print len(applications)
-		for index, application in enumerate(applications):
-			application_link = application.xpath("a/@href")
-			matchObj = re.search( r'keyVal=(.*$)', application_link)
-			key = matchObj.group(1)
 
-			tabletype = "summary"            
-			application_url = "http://public.oxford.gov.uk/online-applications/applicationDetails.do?activeTab=" + tabletype + "&keyVal=" + key
-			application_url = "http://public.oxford.gov.uk" + application_link
-			print "GET " + application_url
-
-			sleep(2)
-			application_page = requests.get(application_url)
-			application_dom = fromstring(application_page.content)    
-
-			print len(application_dom.xpath("//table"))
-            
 search(month)
