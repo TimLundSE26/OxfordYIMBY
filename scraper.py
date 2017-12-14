@@ -26,7 +26,7 @@ def search(mth):
   	print len(results)
 	
 	# <a href="/online-applications/pagedSearchResults.do?action=page&amp;searchCriteria.page=2" class="page">2</a>
-	result = requests.get('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do?action=page&searchCriteria.page=2')
+	result = requests.get('/online-applications/pagedSearchResults.do?action=page&searchCriteria.page=2')
 	result_dom = fromstring(result.content)
 	
 	results = result_dom.xpath("//li[@class='searchresult']")
