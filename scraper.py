@@ -25,6 +25,7 @@ def search(mth):
 	if len(applications) == 0:
 		return
 	else:
+		print len(applications)
 		for index, application in enumerate(applications):
 			application_link = application.xpath("a/@href")
 			matchObj = re.search( r'keyVal=(.*$)', application_link)
