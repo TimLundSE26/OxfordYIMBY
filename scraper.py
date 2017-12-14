@@ -14,7 +14,7 @@ def search(mth):
 	# <input type="radio" name="dateType" value="DC_Validated" checked="checked" id="dateValidated">
     
 	sleep(2)
-	result = requests.post('http://public.oxford.gov.uk/online-applications/search.do?action=monthlyList', request_data)
+	result = requests.post('http://public.oxford.gov.uk/online-applications/monthlyListResults.do?action=firstPage', request_data)
 
 	if not result:
 		print "No result returned"
@@ -22,10 +22,8 @@ def search(mth):
 	
 	result_dom = fromstring(result.content)
   
-  	results = result_dom.xpath("body/div/div/div[3]/div[3]/div")
+  	results = result_dom.xpath("//li[@class='searchresult'")
   	print len(results)
 	
-	print results[0].tag
-	print "".join(results[0].xpath('@class')).strip()
 
 search(month)
