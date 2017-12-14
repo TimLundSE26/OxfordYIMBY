@@ -24,7 +24,7 @@ def search(mth):
   
   	print len(result_dom.xpath("body"))
 	print len(result_dom.xpath("//div"))
-	print len(result_dom.xpath("body/div"))
+	print len(result_dom.xpath("body/div/div/div"))
   
   	results = result_dom.xpath("//ul[@id='searchresults']")
   	print len(results)
