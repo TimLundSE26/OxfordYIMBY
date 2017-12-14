@@ -10,12 +10,14 @@ def search(mth):
   	request_data = { "month": mth, "dateType": "DC_Validated" }
 
 	# <input type="radio" name="dateType" value="DC_Validated" checked="checked" id="dateValidated">
-# is this the way to pass values when posting to a form? A dictionary object with the keys being the names of the controls?
     
-	print "POST 'http://public.oxford.gov.uk/online-applications/advancedSearchResults.do?action=firstPage'"
 	sleep(2)
 	result = requests.post('http://public.oxford.gov.uk/online-applications/search.do?action=monthlyList', request_data)
 
+	if not result:
+		print "No result returned"
+		return
+	
 	result_dom = fromstring(result.content)
 
 	applications = result_dom.xpath("//li[@class='searchresult']")
