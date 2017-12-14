@@ -25,6 +25,6 @@ def search(mth):
   	results = result_dom.xpath("body/div/div/div[3]/div[3]/div")
   	print len(results)
 	
-	print "".join(results[1]@class).tostring()
+	print "".join(results[0].xpath('@id')).strip()
 
 search(month)
