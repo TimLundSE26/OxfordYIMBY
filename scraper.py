@@ -22,7 +22,7 @@ def search(mth):
 	
 	for result in results:
 		link = "".join(result.xpath('a/@href')).strip()
-		description = "".join(result.xpath('a//text()')).strip()
+		description = "".join(result.xpath('a/text()')).strip()
 		address = "".join(result.xpath('p[@class="address"]/text()')).strip()
 		meta = "".join(result.xpath('p[@class="metaInfo"]/text()')).strip()
 		
