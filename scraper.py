@@ -19,7 +19,10 @@ def search(mth):
 		return
 	
 	result_dom = fromstring(result.content)
-
+	
+	print len(result_dom.xpath("body"))
+	print len(result_dom.xpath("//div"))
+	
 	applications = result_dom.xpath("//li[@class='searchresult']")
 
 	if len(applications) == 0:
