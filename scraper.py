@@ -90,8 +90,8 @@ def search():
 				
 #				print "GET " + urlBase + link 
 				
-				result1 = requests.get(urlBase + link)
-				result_dom1 = fromstring(result1.content)
+				result1 = requests.get(urlBase + link)				
+				result_dom1 = fromstring(re.sub(u"(\u2018|\u2019)", "'", result1.content))
 				mgUserBody = result_dom1.xpath("//div[@class='mgUserBody']")[0]
 				mgUserBodySectionTitles = mgUserBody.xpath("//h2[@class='mgSectionTitle']")
 				
