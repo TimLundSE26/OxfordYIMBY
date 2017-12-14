@@ -22,7 +22,7 @@ def search(mth):
 	
 	result_dom = fromstring(result.content)
   
-  	results = result_dom.xpath("//li[@class='searchresult'")
+  	results = result_dom.xpath("//li[@class='searchresult']")
   	print len(results)
 	
 
