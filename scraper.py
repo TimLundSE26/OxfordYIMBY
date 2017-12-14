@@ -99,15 +99,21 @@ def search():
 				
 				for mgUserBodySectionTitle in mgUserBodySectionTitles:
 					
-					mgUserBodySection = mgUserBodySectionTitle.xpath('following-sibling::node()')[0]					
+					mgUserBodySection = mgUserBodySectionTitle.xpath('following-sibling::*')[0]					
 					
 					if mgUserBodySection:						
 						mgUserBodySectionName = "".join(mgUserBodySectionTitle.xpath('text()')).strip()
 						print mgUserBodySectionName
+						print mgUserBodySection.tag
+						
 						matchObj = re.search( r'Surgery details', mgUserBodySectionName, re.I)
 						if matchObj:
 							surgery = "".join(mgUserBodySection.xpath('text()')).strip()
 							print surgery
+							
+# surgery = "".join(mgUserBodySection.xpath('text()')).strip()
+# AttributeError: '_ElementStringResult' object has no attribute 'xpath'
+	
 					else:
 						print "No next sibling"
 #						if re.search( r'More information about this councillor', mgUserBodySectionName, re.I):
