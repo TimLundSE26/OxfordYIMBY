@@ -24,7 +24,7 @@ def search(mth):
   	print len(results)
 	
 	iPage = 2
-	request_data = {"searchCriteria.page": iPage, "action": "page", "orderBy": "DateReceived", "searchCriteria.resultsPerPage": "100"}
+	request_data = {"searchCriteria.page": "2", "action": "page", "orderBy": "DateReceived", "orderByDirection": "Ascending", "searchCriteria.resultsPerPage": "10"}
 	
 	sleep(2)
 	result = requests.post('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do', request_data)
