@@ -106,17 +106,17 @@ def search():
 						
 						if re.search( r'More information about this councillor', mgUserBodySectionName, re.I):
 							filler = len(mgUserBodySection.xpath('node()')
-						elif re.search( r'terms of office', mgUserBodySectionName, re.I):
+						elif (re.search( r'terms of office', mgUserBodySectionName, re.I)):
 							filler = len(mgUserBodySection.xpath('node()')
-						elif re.search( r'committee appointments', mgUserBodySectionName, re.I):
-							filler = len(mgUserBodySection.xpath('node()')
-						elif re.search( r'Surgery details', mgUserBodySectionName, re.I):
-							surgery = "".join(mgUserBodySection.xpath('text()')).strip()
-							print name, "Surgery", mgUserBodySectionName
-						elif re.search( r'Appointments to outside bodies', mgUserBodySectionName, re.I):
-							filler = len(mgUserBodySection.xpath('node()')
-						elif re.search( r'Additional Information', mgUserBodySectionName, re.I):
-							filler = len(mgUserBodySection.xpath('node()')
+	#					elif re.search( r'committee appointments', mgUserBodySectionName, re.I):
+	#						filler = len(mgUserBodySection.xpath('node()')
+	#					elif re.search( r'Surgery details', mgUserBodySectionName, re.I):
+	#						surgery = "".join(mgUserBodySection.xpath('text()')).strip()
+	#						print name, "Surgery", mgUserBodySectionName
+	#					elif re.search( r'Appointments to outside bodies', mgUserBodySectionName, re.I):
+	#						filler = len(mgUserBodySection.xpath('node()')
+	#					elif re.search( r'Additional Information', mgUserBodySectionName, re.I):
+	#						filler = len(mgUserBodySection.xpath('node()')
 						else:
 							filler = len(mgUserBodySection.xpath('node()')
 				
