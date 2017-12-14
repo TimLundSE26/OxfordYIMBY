@@ -124,6 +124,8 @@ def search():
 #							filler = len(mgUserBodySection.xpath('node()')
 						else:
 							filler = len(mgUserBodySection.xpath('node()')
+					else:
+						filler = ""
 				
 				data = { "index": index, "surgery": surgery, "name": name, "link": link, "address": address, "roles": roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  "workPhone": workPhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
 
