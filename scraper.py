@@ -83,6 +83,9 @@ def search():
 				party = "".join(cols[2].xpath('text()')).strip()
 				ward = "".join(cols[3].xpath('text()')).strip()	
 				
+				data = { "index": index, "name": name, "link": link, "address": address, "roles": roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  "workPhone": workPhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
+				print data
+				
 				sleep(2)
 				
 #				print "GET " + urlBase + link 
@@ -100,10 +103,11 @@ def search():
 					
 					mgUserBodySection = mgUserBodySectionTitle.xpath('following-sibling::node()')[0]					
 					
-					if mgUserBodySection:
-						
+					if mgUserBodySection:						
 						mgUserBodySectionName = "".join(mgUserBodySectionTitle.xpath('text()')).strip()
-						
+						print mgUserBodySectionName
+					else:
+						print "No next sibling"
 #						if re.search( r'More information about this councillor', mgUserBodySectionName, re.I):
 #							filler = len(mgUserBodySection.xpath('node()')
 								     
@@ -113,23 +117,23 @@ def search():
 #						if re.search( r'committee appointments', mgUserBodySectionName, re.I):
 #							filler = len(mgUserBodySection.xpath('node()')
 								     
-						if re.search( r'Surgery details', mgUserBodySectionName, re.I):
-							surgery = "".join(mgUserBodySection.xpath('text()')).strip()
-							print name, "Surgery", mgUserBodySectionName
+#						if re.search( r'Surgery details', mgUserBodySectionName, re.I):
+#							surgery = "".join(mgUserBodySection.xpath('text()')).strip()
+#							print name, "Surgery", mgUserBodySectionName
 								     
 #						if re.search( r'Appointments to outside bodies', mgUserBodySectionName, re.I):
 #							filler = len(mgUserBodySection.xpath('node()')
 								     
 #						if re.search( r'Additional Information', mgUserBodySectionName, re.I):
 #							filler = len(mgUserBodySection.xpath('node()')
-						else:
-							filler = len(mgUserBodySection.xpath('node()')
-					else:
-						filler = ""
+#						else:
+#							filler = len(mgUserBodySection.xpath('node()')
+#					else:
+#						filler = ""
 				
-				data = { "index": index, "surgery": surgery, "name": name, "link": link, "address": address, "roles": roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  "workPhone": workPhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
+#				data = { "index": index, "surgery": surgery, "name": name, "link": link, "address": address, "roles": roles, "eWork": eWork, "eHome": eHome, "homePhone": homePhone,  "workPhone": workPhone,  "homeMobile": homeMobile,  "workMobile": workMobile,  "party": party, "ward": ward}
 
-				scraperwiki.sqlite.save(unique_keys=['index', 'link'], data=data)
+#				scraperwiki.sqlite.save(unique_keys=['index', 'link'], data=data)
 
 #				print data
 	
