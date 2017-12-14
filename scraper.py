@@ -95,7 +95,10 @@ def search():
 				print len(mgUserBodySectionTitles)
 				
 				for mgUserBodySectionTitle in mgUserBodySectionTitles:
-					mgUserBodySection = mgUserBodySectionTitle.next()					
+					
+					print "".join(mgUserBodySectionTitle.xpath('text()')).strip()
+					
+					mgUserBodySection = mgUserBodySectionTitle.xpath('following-sibling::node()')[0]					
 					
 					if mgUserBodySection:
 						
