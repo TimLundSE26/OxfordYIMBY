@@ -109,7 +109,7 @@ def search():
 						matchObj = re.search( r'Surgery details', mgUserBodySectionName, re.I)
 						if matchObj:
 							surgery = "".join(mgUserBodySection.xpath('text()')).strip()
-							print surgery
+							print re.sub(u"(\u2018|\u2019)", "'", surgery)
 							
 # surgery = "".join(mgUserBodySection.xpath('text()')).strip()
 # AttributeError: '_ElementStringResult' object has no attribute 'xpath'
