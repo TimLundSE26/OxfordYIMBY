@@ -7,15 +7,13 @@ from time import sleep
 month = "Oct 17"
 
 def search(mth):
-#  	request_data = { "searchCriteria.parish": ALL, "searchCriteria.ward": ALL, "month": mth, "dateType": "DC_Validated" , "searchType": "Application" }
-
+	
   	request_data = {"month": mth, "dateType": "DC_Validated" , "searchType": "Application" }
 
-	# <input type="radio" name="dateType" value="DC_Validated" checked="checked" id="dateValidated">
-    
+
 	sleep(2)
 	result = requests.post('http://public.oxford.gov.uk/online-applications/monthlyListResults.do?action=firstPage', request_data)
-
+	
 	if not result:
 		print "No result returned"
 		return
@@ -25,11 +23,13 @@ def search(mth):
   	results = result_dom.xpath("//li[@class='searchresult']")
   	print len(results)
 	
-	# <a href="/online-applications/pagedSearchResults.do?action=page&amp;searchCriteria.page=2" class="page">2</a>
-	result = requests.get('/online-applications/pagedSearchResults.do?action=page&searchCriteria.page=2')
-	result_dom = fromstring(result.content)
+	iPage = 2
+	request_data = {"searchCriteria.page": iPage, "action": "page", "orderBy": "DateReceived", "searchCriteria.resultsPerPage": "100"}
 	
-	results = result_dom.xpath("//li[@class='searchresult']")
+	sleep(2)
+	result = requests.post('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do', request_data)
+	result_dom = fromstring(result.content)  
+  	results = result_dom.xpath("//li[@class='searchresult']")
   	print len(results)
 	
 search(month)
