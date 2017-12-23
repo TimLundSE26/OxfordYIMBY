@@ -8,7 +8,7 @@ month = "Oct 17"
 
 def search(mth):
 	
-  	request_data = {"month": mth, "dateType": "DC_Validated" , "searchType": "Application" }
+ # 	request_data = {"month": mth, "dateType": "DC_Validated" , "searchType": "Application" }
 	
 #	sleep(2)
 #	result = requests.post('http://public.oxford.gov.uk/online-applications/monthlyListResults.do?action=firstPage', request_data)
@@ -17,9 +17,7 @@ def search(mth):
 #		print "No result returned"
 #		return
 	
-#	result_dom = fromstring(result.content)  
-#  	applications = result_dom.xpath("//li[@class='searchresult']")
-#  	print len(applications)
+
 	
 #	for application in applications:
 #		link = "".join(application.xpath('a/@href')).strip()
@@ -28,8 +26,6 @@ def search(mth):
 #		meta = "".join(application.xpath('p[@class="metaInfo"]/text()')).strip()
 		
 #		print link, address
-	
-	sleep(2)
 	
 # GET on the url with searchCriteria.page=N ...
 #	result = requests.get('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do?action=page&searchCriteria.page=2')
@@ -44,8 +40,9 @@ def search(mth):
 #    answer in my head right now), but the good news is that they don't seem to be necessary - submitting the same POST
 #    request without them still gets the desired results.
 	
-	#searchCriteria.page="n"
-	#action" value="page"
+#searchCriteria.page="n"
+#action" value="page"
+
 	request_data = {"month": mth, 
 			"dateType": "DC_Validated" , 
 			"searchType": "Application", 
@@ -53,7 +50,13 @@ def search(mth):
 #			"action": "page",
 		        "searchCriteria.resultsPerPage": "5"}
 	
+	sleep(2)
+	
 	result = requests.post('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do?action=page', request_data)
+	
+	result_dom = fromstring(result.content)  
+  	applications = result_dom.xpath("//li[@class='searchresult']")
+  	print len(applications)	
 	
 	for application in applications:
 		link = "".join(application.xpath('a/@href')).strip()
