@@ -17,17 +17,33 @@ def search(mth):
 		return
 	
 	result_dom = fromstring(result.content)  
-  	results = result_dom.xpath("//li[@class='searchresult']")
-  	print len(results)
+  	applications = result_dom.xpath("//li[@class='searchresult']")
+  	print len(applications)
 	
-	for result in results:
-		link = "".join(result.xpath('a/@href')).strip()
-		description = "".join(result.xpath('a/text()')).strip()
-		address = "".join(result.xpath('p[@class="address"]/text()')).strip()
-		meta = "".join(result.xpath('p[@class="metaInfo"]/text()')).strip()
+	for application in applications:
+		link = "".join(application.xpath('a/@href')).strip()
+		description = "".join(application.xpath('a/text()')).strip()
+		address = "".join(application.xpath('p[@class="address"]/text()')).strip()
+		meta = "".join(application.xpath('p[@class="metaInfo"]/text()')).strip()
 		
-		print link, meta
+		print link, address
+	
+	sleep(2)
+	result = requests.get('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do?action=page&searchCriteria.page=2')
+	
+	result_dom = fromstring(result.content)  
+  	applications = result_dom.xpath("//li[@class='searchresult']")
+  	print len(applications)
+	
+	for application in applications:
+		link = "".join(application.xpath('a/@href')).strip()
+		description = "".join(application.xpath('a/text()')).strip()
+		address = "".join(application.xpath('p[@class="address"]/text()')).strip()
+		meta = "".join(application.xpath('p[@class="metaInfo"]/text()')).strip()
 		
+		print link, address
+		
+	
 #	iPage = 2
 #	request_data = {"searchCriteria.page": "2", "action": "page", "orderBy": "DateReceived", "orderByDirection": "Ascending", "searchCriteria.resultsPerPage": "10"}
 	
