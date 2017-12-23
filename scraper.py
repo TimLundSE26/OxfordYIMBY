@@ -45,9 +45,12 @@ def search(mth):
 	
 	#searchCriteria.page="n"
 	#action" value="page"
-	request_data = {"month": mth, "dateType": "DC_Validated" , "searchType": "Application", 
-			"searchCriteria.page": "2" , "action": "page",
-		        "searchCriteria.resultsPerPage", "5"}
+	request_data = {"month": mth, 
+			"dateType": "DC_Validated" , 
+			"searchType": "Application", 
+			"searchCriteria.page": "2" , 
+			"action": "page",
+		        "searchCriteria.resultsPerPage": "5"}
 	
 	result = requests.post('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do', request_data)
 	
