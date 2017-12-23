@@ -29,11 +29,22 @@ def search(mth):
 		print link, address
 	
 	sleep(2)
-	result = requests.get('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do?action=page&searchCriteria.page=2')
 	
-	result_dom = fromstring(result.content)  
-  	applications = result_dom.xpath("//li[@class='searchresult']")
-  	print len(applications)
+# GET on the url with searchCriteria.page=N ...
+#	result = requests.get('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do?action=page&searchCriteria.page=2')
+	
+#	result_dom = fromstring(result.content)  
+#  	applications = result_dom.xpath("//li[@class='searchresult']")
+#  	print len(applications)
+
+	#doesn't seem to work
+	
+# David suggests "There is doubtless a way to handle the cookies in Python (it's been a while, so I don't have the 
+#    answer in my head right now), but the good news is that they don't seem to be necessary - submitting the same POST
+#    request without them still gets the desired results.
+	
+	
+	result = requests.post('http://public.oxford.gov.uk/online-applications/monthlyListResults.do?action=firstPage', request_data)
 	
 	for application in applications:
 		link = "".join(application.xpath('a/@href')).strip()
