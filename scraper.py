@@ -8,24 +8,25 @@ month = "Oct 17"
 
 def search(mth):
 	
- # 	request_data = {"month": mth, "dateType": "DC_Validated" , "searchType": "Application" }
+  	request_data = {"month": mth, "dateType": "DC_Validated" , "searchType": "Application" }
 	
-#	sleep(2)
-#	result = requests.post('http://public.oxford.gov.uk/online-applications/monthlyListResults.do?action=firstPage', request_data)
+	sleep(2)
+	result = requests.post('http://public.oxford.gov.uk/online-applications/monthlyListResults.do?action=firstPage', request_data)
 	
-#	if not result:
-#		print "No result returned"
-#		return
+	if not result:
+		print "No result returned"
+		return
 	
-
+	result_dom = fromstring(result.content)  
+  	applications = result_dom.xpath("//li[@class='searchresult']")
+  	print len(applications)	
 	
-#	for application in applications:
-#		link = "".join(application.xpath('a/@href')).strip()
-#		description = "".join(application.xpath('a/text()')).strip()
-#		address = "".join(application.xpath('p[@class="address"]/text()')).strip()
-#		meta = "".join(application.xpath('p[@class="metaInfo"]/text()')).strip()
-		
-#		print link, address
+	for application in applications:
+		link = "".join(application.xpath('a/@href')).strip()
+		description = "".join(application.xpath('a/text()')).strip()
+		address = "".join(application.xpath('p[@class="address"]/text()')).strip()
+		meta = "".join(application.xpath('p[@class="metaInfo"]/text()')).strip()	
+		print link, address
 	
 # GET on the url with searchCriteria.page=N ...
 #	result = requests.get('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do?action=page&searchCriteria.page=2')
@@ -43,16 +44,22 @@ def search(mth):
 #searchCriteria.page="n"
 #action" value="page"
 
+# this is a guess at what data to post
 	request_data = {"month": mth, 
 			"dateType": "DC_Validated" , 
 			"searchType": "Application", 
 			"searchCriteria.page": "2" , 
-#			"action": "page",
+			"action": "page",
 		        "searchCriteria.resultsPerPage": "5"}
 	
 	sleep(2)
 	
-	result = requests.post('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do?action=page', request_data)
+
+	result = requests.post('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do', request_data)
+	
+	if not result:
+		print "No result returned for second post"
+		return
 	
 	result_dom = fromstring(result.content)  
   	applications = result_dom.xpath("//li[@class='searchresult']")
