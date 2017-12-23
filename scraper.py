@@ -45,8 +45,11 @@ def search(mth):
 	
 	#searchCriteria.page="n"
 	#action" value="page"
+	request_data = {"month": mth, "dateType": "DC_Validated" , "searchType": "Application", 
+			"searchCriteria.page": "2" , "action": "page",
+		        "searchCriteria.resultsPerPage", "5"}
 	
-	result = requests.post('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do?action=page&searchCriteria.page=2', request_data)
+	result = requests.post('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do', request_data)
 	
 	for application in applications:
 		link = "".join(application.xpath('a/@href')).strip()
