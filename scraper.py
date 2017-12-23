@@ -9,24 +9,25 @@ month = "Oct 17"
 def search(mth):
 	
   	request_data = {"month": mth, "dateType": "DC_Validated" , "searchType": "Application" }
-	sleep(2)
-	result = requests.post('http://public.oxford.gov.uk/online-applications/monthlyListResults.do?action=firstPage', request_data)
 	
-	if not result:
-		print "No result returned"
-		return
+#	sleep(2)
+#	result = requests.post('http://public.oxford.gov.uk/online-applications/monthlyListResults.do?action=firstPage', request_data)
 	
-	result_dom = fromstring(result.content)  
-  	applications = result_dom.xpath("//li[@class='searchresult']")
-  	print len(applications)
+#	if not result:
+#		print "No result returned"
+#		return
 	
-	for application in applications:
-		link = "".join(application.xpath('a/@href')).strip()
-		description = "".join(application.xpath('a/text()')).strip()
-		address = "".join(application.xpath('p[@class="address"]/text()')).strip()
-		meta = "".join(application.xpath('p[@class="metaInfo"]/text()')).strip()
+#	result_dom = fromstring(result.content)  
+#  	applications = result_dom.xpath("//li[@class='searchresult']")
+#  	print len(applications)
+	
+#	for application in applications:
+#		link = "".join(application.xpath('a/@href')).strip()
+#		description = "".join(application.xpath('a/text()')).strip()
+#		address = "".join(application.xpath('p[@class="address"]/text()')).strip()
+#		meta = "".join(application.xpath('p[@class="metaInfo"]/text()')).strip()
 		
-		print link, address
+#		print link, address
 	
 	sleep(2)
 	
@@ -49,10 +50,10 @@ def search(mth):
 			"dateType": "DC_Validated" , 
 			"searchType": "Application", 
 			"searchCriteria.page": "2" , 
-			"action": "page",
+#			"action": "page",
 		        "searchCriteria.resultsPerPage": "5"}
 	
-	result = requests.post('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do', request_data)
+	result = requests.post('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do?action=page', request_data)
 	
 	for application in applications:
 		link = "".join(application.xpath('a/@href')).strip()
