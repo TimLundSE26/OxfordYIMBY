@@ -43,8 +43,10 @@ def search(mth):
 #    answer in my head right now), but the good news is that they don't seem to be necessary - submitting the same POST
 #    request without them still gets the desired results.
 	
+	#searchCriteria.page="n"
+	#action" value="page"
 	
-	result = requests.post('http://public.oxford.gov.uk/online-applications/monthlyListResults.do?action=firstPage', request_data)
+	result = requests.post('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do?action=page&searchCriteria.page=2', request_data)
 	
 	for application in applications:
 		link = "".join(application.xpath('a/@href')).strip()
