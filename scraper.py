@@ -72,5 +72,6 @@ def search(mth):
 #		print link, address
 		
 
-	
+print "Starting run"
+
 search(month)
