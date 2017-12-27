@@ -8,12 +8,13 @@ month = "Oct 17"
 laurlroot = "http://planning.lewisham.gov.uk"
 
 def search(mth):
-	session = requests.Session()
+#	session = requests.Session()
 	
   	request_data = {"month": mth, "dateType": "DC_Validated" , "searchType": "Application" }
 	
 	sleep(2)
-	result = session.post(laurlroot + '/online-applications/monthlyListResults.do?action=firstPage', request_data)
+#	result = session.post(laurlroot + '/online-applications/monthlyListResults.do?action=firstPage', request_data)
+	result = requests.post(laurlroot + '/online-applications/monthlyListResults.do?action=firstPage', request_data)
 	
 	if not result:
 		print "No result returned"
