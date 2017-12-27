@@ -7,11 +7,12 @@ from time import sleep
 month = "Oct 17"
 
 def search(mth):
+	session = requests.Session()
 	
   	request_data = {"month": mth, "dateType": "DC_Validated" , "searchType": "Application" }
 	
 	sleep(2)
-	result = requests.post('http://public.oxford.gov.uk/online-applications/monthlyListResults.do?action=firstPage', request_data)
+	result = session.post('http://public.oxford.gov.uk/online-applications/monthlyListResults.do?action=firstPage', request_data)
 	
 	if not result:
 		print "No result returned"
@@ -29,17 +30,12 @@ def search(mth):
 		print link, address
 	
 # GET on the url with searchCriteria.page=N ...
-#	result = requests.get('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do?action=page&searchCriteria.page=2')
+	result = session.get('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do?action=page&searchCriteria.page=2')
 	
-#	result_dom = fromstring(result.content)  
-#  	applications = result_dom.xpath("//li[@class='searchresult']")
-#  	print len(applications)
+	result_dom = fromstring(result.content)  
+  	applications = result_dom.xpath("//li[@class='searchresult']")
+  	print len(applications)
 
-	#doesn't seem to work
-	
-# David suggests "There is doubtless a way to handle the cookies in Python (it's been a while, so I don't have the 
-#    answer in my head right now), but the good news is that they don't seem to be necessary - submitting the same POST
-#    request without them still gets the desired results.
 	
 #searchCriteria.page="n"
 #action" value="page"
@@ -55,7 +51,7 @@ def search(mth):
 	sleep(2)
 	
 
-	result = requests.post('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do', request_data)
+	result = session.post('http://public.oxford.gov.uk/online-applications/pagedSearchResults.do', request_data)
 	
 	if not result:
 		print "No result returned for second post"
